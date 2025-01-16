@@ -9,7 +9,7 @@ class Post(BaseModel):
     title: str
     content: str
     # So till here we have setted the field we want to that should be passed when passing the parameters in the api. So now we want to send a data which may be an Optional data 
-    not_so_important_data = Optional[str] 
+    not_so_important_data = Optional[str] = None
 
 @app.get("/")
 def root():
