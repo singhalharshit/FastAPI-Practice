@@ -28,10 +28,10 @@ class Post(BaseModel):
 
 TOATL_POST = [{"id":1, "title":"First Pic","content":"My First Pic"}, {"id":2,"title":"Second Pic","content":"My Second Pic"}]
 
-@app.get("/")
+@app.get("/") # A Decorator '@' -> So this the part from where a simple function converts into a Path Operation (Language of FastAPI) or Routes. 
 def root():
     # return {"message":"Hello World!"}
-    return {'message':'Hello World'}
+    return {'message':'Hello World'} # We are returning a dictionary and FastAPI will automatically convert it to Json
 
 @app.post("/posts")
 def send_posts(payload: Post): # payload: Post here we mean that our payload is going to have everything what's into the Post class which agian is made via pydantic via which we have fixed a schema so title and content are mandotry to pass and caption is optional we might pass it we might not pass it.
