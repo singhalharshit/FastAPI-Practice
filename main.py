@@ -34,7 +34,7 @@ def root():
     return {'message':'Hello World'} # We are returning a dictionary and FastAPI will automatically convert it to Json
 
 @app.post("/posts")
-def send_posts(payload: Post): # payload: Post here we mean that our payload is going to have everything what's into the Post class which agian is made via pydantic via which we have fixed a schema so title and content are mandotry to pass and caption is optional we might pass it we might not pass it.
+def send_posts(payload: Post): # payload: Post here we mean that our payload is going to have everything what's into the Post class which again is made via pydantic via which we have fixed a schema so title and content are mandatory to pass and caption is optional we might pass it we might not pass it.
     
     # So Generally what happens is that this payload has the data in it in the form of pydantic model. So we can convert it from a pydantic model to a python dict by using .dict
     print(payload.dict())
