@@ -8,12 +8,12 @@ Update (U) - We use PUT/PATCH method
 Delete (D) - We use DELETE method
 
 Difference between PUT and PATCH:
-- PUT: If you want to modify any thing in API so you have to pass every item in the PUT. Replaces the entire resource with the new data. If any field is missing in the request, it will be removed from the resource.
+- PUT: If you want to modify any thing in API so you have to pass every item in the PUT. Like if you want to change title for any post then one needs to pass a new title with every other parameter required in API
 - PATCH: Partially updates the resource. Only the fields provided in the request will be updated, and the rest will remain unchanged.
 
 """
 
-from fastapi import FastAPI
+from fastapi import Body, FastAPI
 from pydantic import BaseModel # used for defining a schema just to force user what is expected
 from typing import Optional # This is used to pass the any field/data which we want to keep as an optional data like not necessary to send it
 
@@ -26,18 +26,29 @@ class Post(BaseModel):
     # So till here we have setted the field we want to that should be passed when passing the parameters in the api. So now we want to send a data which may be an Optional data 
     caption:  Optional[str] = None
 
-TOATL_POST = [{"id":1, "title":"First Pic","content":"My First Pic"}, {"id":2,"title":"Second Pic","content":"My Second Pic"}]
+TOTAL_POST = [{"id":1, "title":"First Pic","content":"My First Pic"}, {"id":2,"title":"Second Pic","content":"My Second Pic"}]
 
 @app.get("/") # A Decorator '@' -> So this the part from where a simple function converts into a Path Operation (Language of FastAPI) or Routes. 
 def root():
     # return {"message":"Hello World!"}
     return {'message':'Hello World'} # We are returning a dictionary and FastAPI will automatically convert it to Json
 
+@app.post("/create_post")
+def create_posts(payload:dict = Body(...)): # So what we did in here was we extracted the content of the body being passed via post from the api converted it into dict format and then stored it into payload variable
+    print(payload)
+    return {"message":"Successful"}
+
+
 @app.post("/posts")
-def send_posts(payload: Post): # payload: Post here we mean that our payload is going to have everything what's into the Post class which again is made via pydantic via which we have fixed a schema so title and content are mandatory to pass and caption is optional we might pass it we might not pass it.
+def send_posts( new_payload: Post): # payload: Post here we mean that our payload is going to have everything what's into the Post class which again is made via pydantic via which we have fixed a schema so title and content are mandatory to pass and caption is optional we might pass it we might not pass it.
     
     # So Generally what happens is that this payload has the data in it in the form of pydantic model. So we can convert it from a pydantic model to a python dict by using .dict
-    print(payload.dict())
-    print("payload.title: ",payload.title)
-    print("payload.content",payload.content)
-    return {f"message":payload}
+    print(new_payload.dict())
+    print("payload.title: ",new_payload.title)
+    print("payload.content",new_payload.content)
+    return {f"message":new_payload}
+
+
+@app.get("/return_post")
+def return_post():
+    return {"total_post":TOTAL_POST}
