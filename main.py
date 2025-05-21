@@ -13,6 +13,7 @@ Difference between PUT and PATCH:
 
 """
 
+import re
 from fastapi import Body, FastAPI
 from pydantic import BaseModel # used for defining a schema just to force user what is expected
 from typing import Optional,Dict # This is used to pass the any field/data which we want to keep as an optional data like not necessary to send it
@@ -65,3 +66,15 @@ def new_post(new_post_payload: Post):
     TOTAL_POST.append(new_post_data)
     print(TOTAL_POST)
     return{"Your New Post meta data":new_post_payload}
+
+def find_post(id):
+    for i in TOTAL_POST:
+        if i['id'] == int(id):
+            return i
+
+@app.get("/post/{id}") #Here {id} or anything inside {} is called path parameter
+def get_post(id:int):
+    post_finding= find_post(id)
+    print(id)
+    return {"Post_Details": post_finding}
+
