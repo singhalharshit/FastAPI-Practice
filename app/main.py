@@ -117,3 +117,9 @@ def updating_posts(id:int, post:Post):
     post_to_be_updated = find_index_of_posts(id)
     post_dict = post.dict()
 
+# Interaction with SQL Database - ORM Or a normal library 
+    """
+        Object Realtional Mapper - It is a layer of abstraction that sits between the database and us. 
+        So instead of using RAW SQL directly we use the functions of the ORM and the ORM communicates to SQL using our python code. 
+        This is to remove SQL complexity and use a simple basic functions
+    """
