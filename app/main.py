@@ -117,3 +117,16 @@ def updating_posts(id:int, post:Post):
     post_to_be_updated = find_index_of_posts(id)
     post_dict = post.dict()
 
+# Interaction with SQL Database - ORM Or a normal library 
+    """
+        Object Relational Mapper - It is a layer of abstraction that sits between the database and us. 
+        So instead of using RAW SQL directly we use the functions of the ORM and the ORM communicates to SQL using our python code. 
+        This is to remove SQL complexity and use a simple basic functions
+    """
+
+# Difference between Schema/Pydantic model and SQL Alchemy Model
+    """
+        Schema/Pydantic model define the structure of a request & response
+        This ensure that when a user wants to create a post the request will only go through if it has a "title" and "content" in the body in our case
+        Where as SQL Alchemy model is used to play around with databases in order to define a proper database structure
+    """
