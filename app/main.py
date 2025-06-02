@@ -130,3 +130,5 @@ def updating_posts(id:int, post:Post):
         This ensure that when a user wants to create a post the request will only go through if it has a "title" and "content" in the body in our case
         Where as SQL Alchemy model is used to play around with databases in order to define a proper database structure
     """
+
+# For hashing the passwords we use passlib and bcrypt to hash the password
