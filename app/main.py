@@ -16,7 +16,7 @@ Difference between PUT and PATCH:
 import re
 from sre_constants import SUCCESS
 from fastapi import Body, FastAPI,Response,status,HTTPException
-from pydantic import BaseModel # used for defining a schema just to force user what is expected
+# from model import BaseModel # used for defining a schema just to force user what is expected
 from typing import Optional # This is used to pass the any field/data which we want to keep as an optional data like not necessary to send it
 from random import randint
 
