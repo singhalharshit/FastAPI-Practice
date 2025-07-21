@@ -19,6 +19,7 @@ from fastapi import Body, FastAPI,Response,status,HTTPException
 # from model import BaseModel # used for defining a schema just to force user what is expected
 from typing import Optional # This is used to pass the any field/data which we want to keep as an optional data like not necessary to send it
 from random import randint
+from pydantic import BaseModel
 
 # So what we do is we extend Basemodel into our Post class and then we define how we are going to use and what is going to be a datatype of the class
 class Post(BaseModel):
